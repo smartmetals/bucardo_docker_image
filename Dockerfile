@@ -1,17 +1,17 @@
-FROM ubuntu:xenial
+FROM ubuntu:focal
 
 LABEL maintainer="lucas@vieira.io"
 LABEL version="1.0"
 
-ENV PG_VERSION 12
+ENV PG_VERSION 13
 
 RUN apt-get update \
     && apt-get -y install software-properties-common wget jq netcat
 
-RUN add-apt-repository \
-    "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main"
-
 RUN wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+
+RUN add-apt-repository \
+    "deb http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main"
 
 RUN apt-get -y update \
     && apt-get -y upgrade
